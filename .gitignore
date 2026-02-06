@@ -1,4 +1,8 @@
-# Dependencies
+# Depende# production
+/dist
+
+# Template zips (generated, not tracked)
+ordoagentforge-template-*.zipies
 node_modules/
 /.pnp
 .pnp.js
