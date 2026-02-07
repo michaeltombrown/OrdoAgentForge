@@ -69,8 +69,14 @@ export function useToolExecution() {
         });
 
         if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Tool execution failed');
+          // Check if response is JSON before parsing
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Tool execution failed');
+          } else {
+            throw new Error('API endpoint not available');
+          }
         }
 
         // Check if response is streaming

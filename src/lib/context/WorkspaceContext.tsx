@@ -86,8 +86,20 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({
         });
 
         if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Failed to create workspace');
+          // Check if response is JSON before parsing
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to create workspace');
+          } else {
+            throw new Error('API endpoint not available');
+          }
+        }
+
+        // Check if response is JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          throw new Error('API returned non-JSON response');
         }
 
         const workspace = await response.json();
@@ -120,8 +132,20 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({
         });
 
         if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Failed to update workspace');
+          // Check if response is JSON before parsing
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to update workspace');
+          } else {
+            throw new Error('API endpoint not available');
+          }
+        }
+
+        // Check if response is JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          throw new Error('API returned non-JSON response');
         }
 
         const updatedWorkspace = await response.json();
@@ -156,8 +180,14 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({
         });
 
         if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Failed to delete workspace');
+          // Check if response is JSON before parsing
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to delete workspace');
+          } else {
+            throw new Error('API endpoint not available');
+          }
         }
 
         setWorkspaces((prev) => prev.filter((w) => w.id !== id));

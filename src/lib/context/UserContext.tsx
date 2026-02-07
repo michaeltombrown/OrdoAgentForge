@@ -44,6 +44,12 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
         throw new Error('Failed to fetch user data');
       }
 
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('API returned non-JSON response');
+      }
+
       const userData = await response.json();
       setUser(userData);
     } catch (err) {
