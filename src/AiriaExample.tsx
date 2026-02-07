@@ -22,7 +22,7 @@ function AiriaExample() {
     async function loadData() {
       try {
         setLoading(true);
-        
+
         // Fetch agents and projects in parallel
         const [agentsData, projectsData] = await Promise.all([
           getAgentCards({ PageNumber: 1, PageSize: 5 }),

@@ -1,0 +1,42 @@
+I need to implement comprehensive testing for my multi-tenant AI dashboard application.
+
+I have 3 testing strategy documents located in the folder 'Ordo AgentForge Testing Scripts':
+1. PHASED_TESTING_STRATEGY.md - For testing during each build phase
+2. TESTING_STRATEGY.md - For comprehensive testing after completion
+3. TESTING_STRATEGY_COMPLETE.md - Hybrid reference guide
+
+Since I'm currently building the application in phases, I want to use the 
+PHASED_TESTING_STRATEGY.md approach to test each component as I build it.
+
+FIRST, help me set up the testing infrastructure:
+
+## Step 1: Create Test Configuration
+
+Please read PHASED_TESTING_STRATEGY.md and create the initial test setup:
+
+1. Create vitest.config.ts with:
+   - TypeScript configuration
+   - happy-dom environment
+   - Path aliases (@/ imports)
+   - Coverage thresholds (85% minimum)
+   - Mock configurations for Supabase and Clerk
+
+2. Create src/__tests__/setup.ts with:
+   - Global test utilities
+   - Mock environment variables
+   - Test database configuration
+
+3. Create src/__tests__/utils/testUtils.tsx with:
+   - Custom render function with all providers (UserContext, WorkspaceContext, ToolsContext)
+   - Mock helpers
+   - Common test scenarios
+
+4. Create src/__tests__/mocks/ folder with:
+   - supabaseMock.ts
+   - clerkMock.ts
+   - apiMocks.ts
+
+After you create these files, I'll tell you which phase I'm currently on, 
+and we'll create tests for that specific phase.
+
+Start with the test configuration setup now.

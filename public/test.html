@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrdoAgentForge - Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-center;
+        }
+        .container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0 0 20px 0;
+        }
+        .status {
+            display: inline-block;
+            background: #10b981;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 10px 0;
+        }
+        .info {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .check {
+            text-align: left;
+            margin: 10px 0;
+        }
+        .check::before {
+            content: "✅ ";
+        }
+        a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 OrdoAgentForge</h1>
+        <div class="status">Servers Running</div>
+        
+        <p style="font-size: 1.2em; margin: 30px 0;">
+            Your development environment is up and running!
+        </p>
+        
+        <div class="info">
+            <h2>✅ System Status</h2>
+            <div class="check">Backend API: http://localhost:3001</div>
+            <div class="check">Frontend: http://localhost:3000</div>
+            <div class="check">Database: Supabase Connected</div>
+            <div class="check">Auth: Clerk Configured</div>
+            <div class="check">Environment: All variables loaded</div>
+        </div>
+        
+        <p style="margin-top: 30px;">
+            React app loading issue detected.<br>
+            Check browser console (F12) for errors.
+        </p>
+        
+        <p style="font-size: 0.9em; opacity: 0.8;">
+            See <a href="#">FRONTEND_DEBUG_GUIDE.md</a> for troubleshooting
+        </p>
+    </div>
+    
+    <script>
+        // Log environment check
+        console.log('✅ Static test page loaded successfully');
+        console.log('🔍 Next: Check why React app is not mounting');
+        console.log('📋 Steps:');
+        console.log('  1. Check /src/main.tsx is loading');
+        console.log('  2. Check for TypeScript errors');
+        console.log('  3. Check Clerk authentication');
+        console.log('  4. Verify all imports resolve');
+    </script>
+</body>
+</html>

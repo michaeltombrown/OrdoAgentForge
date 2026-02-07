@@ -1,14 +1,9 @@
-import {
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useUser,
-} from '@clerk/clerk-react';
+import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/clerk-react';
 import { useAuthHelpers } from './lib/clerk-helpers';
 
 /**
  * Example Clerk Authentication Component
- * 
+ *
  * This component demonstrates various Clerk features including:
  * - Sign in/sign up buttons
  * - User profile display
@@ -18,14 +13,8 @@ import { useAuthHelpers } from './lib/clerk-helpers';
 
 function ClerkExample() {
   const { user } = useUser();
-  const {
-    userName,
-    userEmail,
-    userImageUrl,
-    signOut,
-    openSignIn,
-    openSignUp,
-  } = useAuthHelpers();
+  const { userName, userEmail, userImageUrl, signOut, openSignIn, openSignUp } =
+    useAuthHelpers();
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>

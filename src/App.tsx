@@ -1,66 +1,41 @@
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from '@clerk/clerk-react';
-import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { RootLayout } from './app/layout';
+import { LandingPage } from './app/page';
+import { DashboardLayoutPage } from './app/(dashboard)/layout';
+import { DashboardPage } from './app/(dashboard)/page';
+import { ToolPage } from './app/tools/[slug]/page';
+import { KnowledgeBasePage } from './app/(dashboard)/knowledge/page';
+import { AnalyticsPage } from './app/(dashboard)/analytics/page';
+import { WorkspacesPage } from './app/(dashboard)/workspaces/page';
+import { SettingsPage } from './app/(dashboard)/settings/page';
+import { AdminPage } from './app/(dashboard)/admin/page';
 
 function App() {
-  const { user, isLoaded } = useUser();
-
   return (
-    <div className="App">
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', borderBottom: '1px solid #ccc' }}>
-        <h1>OrdoAgentForge</h1>
-        <div>
-          <SignedOut>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <SignInButton mode="modal">
-                <button style={{ padding: '0.5rem 1rem', cursor: 'pointer' }}>Sign In</button>
-              </SignInButton>
-              <SignUpButton mode="modal">
-                <button style={{ padding: '0.5rem 1rem', cursor: 'pointer', backgroundColor: '#10B981', color: 'white', border: 'none', borderRadius: '4px' }}>Sign Up</button>
-              </SignUpButton>
-            </div>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </div>
-      </header>
+    <BrowserRouter>
+      <RootLayout>
+        <Routes>
+          {/* Landing Page */}
+          <Route path="/" element={<LandingPage />} />
 
-      <main style={{ padding: '2rem' }}>
-        <SignedOut>
-          <div className="card">
-            <h2>Welcome to OrdoAgentForge</h2>
-            <p>Please sign in to get started.</p>
-          </div>
-        </SignedOut>
+          {/* Dashboard Routes */}
+          <Route path="/dashboard" element={<DashboardLayoutPage />}>
+            <Route index element={<DashboardPage />} />
+            <Route path="knowledge" element={<KnowledgeBasePage />} />
+            <Route path="analytics" element={<AnalyticsPage />} />
+            <Route path="workspaces" element={<WorkspacesPage />} />
+            <Route path="settings" element={<SettingsPage />} />
+            <Route path="admin" element={<AdminPage />} />
+          </Route>
 
-        <SignedIn>
-          <div className="card">
-            <h2>Welcome back{isLoaded && user ? `, ${user.firstName || user.username}` : ''}!</h2>
-            <p>You are successfully authenticated with Clerk.</p>
-            {isLoaded && user && (
-              <div style={{ marginTop: '1rem', textAlign: 'left' }}>
-                <h3>User Info:</h3>
-                <p><strong>ID:</strong> {user.id}</p>
-                <p><strong>Email:</strong> {user.primaryEmailAddress?.emailAddress}</p>
-                <p><strong>Username:</strong> {user.username}</p>
-              </div>
-            )}
-          </div>
-        </SignedIn>
+          {/* Tool Routes */}
+          <Route path="/tools/:slug" element={<ToolPage />} />
 
-        <div className="card" style={{ marginTop: '2rem' }}>
-          <h3>🛠️ Integrations Status</h3>
-          <ul style={{ textAlign: 'left' }}>
-            <li>✅ React + TypeScript + Vite</li>
-            <li>✅ Clerk Authentication</li>
-            <li>✅ Supabase</li>
-            <li>✅ Airia API</li>
-            <li>✅ MongoDB</li>
-            <li>✅ Vercel Deployment</li>
-          </ul>
-        </div>
-      </main>
-    </div>
+          {/* Catch-all redirect */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </RootLayout>
+    </BrowserRouter>
   );
 }
 

@@ -1,6 +1,6 @@
 /**
  * Clerk Authentication Helper Functions
- * 
+ *
  * This module provides utility functions for working with Clerk authentication.
  */
 
@@ -21,13 +21,13 @@ export function useAuthHelpers() {
     userId,
     sessionId,
     isLoaded,
-    
+
     // User data
     user,
     userEmail: user?.primaryEmailAddress?.emailAddress,
     userName: user?.fullName || user?.firstName || 'User',
     userImageUrl: user?.imageUrl,
-    
+
     // Auth methods
     signOut,
     openSignIn: () => clerk.openSignIn(),

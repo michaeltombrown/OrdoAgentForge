@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+
+# Setup and example files
+Ordo AgentForge Set-Up Files/
+*.example.ts
+
+# Test and coverage
+coverage/
+
+# Cache
+.cache/
+.turbo/
+
+# Environment
+.env
+.env.local
+.env.*.local

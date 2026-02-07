@@ -15,15 +15,12 @@ export async function testSupabaseConnection() {
     console.log('✅ Supabase client initialized');
 
     // Test 2: Test connection with a simple query
-    const { data, error } = await supabase
-      .from('_test')
-      .select('*')
-      .limit(1);
+    const { data, error } = await supabase.from('_test').select('*').limit(1);
 
     if (error && error.message.includes('relation "_test" does not exist')) {
       // This is expected - the table doesn't exist yet, but connection works!
       console.log('✅ Supabase connection successful!');
-      console.log('ℹ️  No tables created yet - that\'s normal');
+      console.log("ℹ️  No tables created yet - that's normal");
       return { success: true, message: 'Connection successful!' };
     }
 

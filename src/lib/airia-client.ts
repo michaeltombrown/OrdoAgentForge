@@ -5,7 +5,8 @@
 import createClient from 'openapi-fetch';
 import type { paths } from './airia-api-types';
 
-const AIRIA_API_URL = import.meta.env.VITE_AIRIA_API_URL || 'https://api.airia.ai';
+const AIRIA_API_URL =
+  import.meta.env.VITE_AIRIA_API_URL || 'https://api.airia.ai';
 const AIRIA_API_KEY = import.meta.env.VITE_AIRIA_API_KEY;
 
 // Create the API client with proper typing
@@ -13,7 +14,7 @@ export const airiaClient = createClient<paths>({
   baseUrl: AIRIA_API_URL,
   headers: {
     'Content-Type': 'application/json',
-    ...(AIRIA_API_KEY && { 'Authorization': `Bearer ${AIRIA_API_KEY}` }),
+    ...(AIRIA_API_KEY && { Authorization: `Bearer ${AIRIA_API_KEY}` }),
   },
 });
 
@@ -64,11 +65,14 @@ export async function getChatSpaces(params?: {
   SortDirection?: string;
   Filter?: string;
 }) {
-  const { data, error } = await airiaClient.GET('/v1/ChatSpaces/PaginatedSpaces', {
-    params: {
-      query: params,
-    },
-  });
+  const { data, error } = await airiaClient.GET(
+    '/v1/ChatSpaces/PaginatedSpaces',
+    {
+      params: {
+        query: params,
+      },
+    }
+  );
 
   if (error) throw new Error('Failed to fetch chat spaces');
   return data;
@@ -126,4 +130,3 @@ export async function getProjects(params?: {
 
 // Export the client for custom requests
 export default airiaClient;
-
