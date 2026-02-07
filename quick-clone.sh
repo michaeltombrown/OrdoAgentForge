@@ -29,17 +29,17 @@ rm -rf .git
 git init
 
 # Install dependencies
-echo "📦 Installing dependencies..."
+echo "📦 Installing dependencies (this may take a few minutes)..."
 npm install
 
 # Initialize Husky
 echo "🐕 Setting up Husky..."
 npx husky init
 
-# Initial commit
+# Initial commit (skip hooks to avoid hanging)
 echo "💾 Creating initial commit..."
 git add -A
-git commit -m "Initial commit from OrdoAgentForge template"
+git commit -m "Initial commit from OrdoAgentForge template" --no-verify
 
 echo ""
 echo "✅ Project created successfully!"
