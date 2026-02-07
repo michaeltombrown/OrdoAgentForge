@@ -211,21 +211,24 @@ echo ""
 echo "🔧 Setting up git..."
 cd "../$PROJECT_NAME"
 git init
-git add -A
-git commit -m "Initial commit from OrdoAgentForge template"
 
 # Install dependencies
 echo ""
 read -p "Install npm dependencies now? (y/n): " INSTALL_DEPS
 
 if [ "$INSTALL_DEPS" = "y" ]; then
-    echo "📦 Installing dependencies..."
+    echo "📦 Installing dependencies (this may take a few minutes)..."
     npm install
     
     # Initialize Husky
     echo "🐕 Setting up Husky..."
     npx husky init
 fi
+
+# Create initial commit (after Husky setup, skip hooks to avoid hanging)
+echo "💾 Creating initial commit..."
+git add -A
+git commit -m "Initial commit from OrdoAgentForge template" --no-verify
 
 echo ""
 echo "✅ Project created successfully!"
